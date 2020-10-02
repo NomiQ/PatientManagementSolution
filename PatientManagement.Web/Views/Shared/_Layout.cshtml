@@ -13,7 +13,9 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div>
                 <img src="~/Content/img/1845231.png" width="50" height="50" />
-                <a class="navbar-brand">The Margalla Clinic’s</a>
+                @*<a class="navbar-brand">The Margalla Clinic’s</a>*@
+                @Html.ActionLink("The Margalla Clinic’s", "Index", "Home", new object { },
+                      new { @class = "navbar-brand" })
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -22,13 +24,20 @@
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        @Html.ActionLink("Home", "Index", "Home", new object { },
+                       new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        @Html.ActionLink("About", "About", "Home", new object { },
+                      new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Admin</a>
+                        @Html.ActionLink("Contact", "Contact", "Home", new object { },
+                      new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Admin", "Admin", "Home", new object { },
+                      new { @class = "nav-link" })
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
@@ -38,20 +47,20 @@
             </div>
         </nav>
     </div>
-        <div class="container body-content">
-            @RenderBody()
-            
-            <div class="fixed-bottom">
-                <footer class="container">
-                    <hr />
-                    <div class="text-center">&copy; @DateTime.Now.Year - The Margalla Clinic’s</div>
-                </footer>
-            </div>
+    <div class="container body-content">
+        @RenderBody()
+
+        <div class="container">
+            <footer class="fixed-bottom flex-fill">
+                <div class="text-center">&copy; @DateTime.Now.Year - The Margalla Clinic’s</div>
+            </footer>
         </div>
+    </div>
+    
 
-
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
+
 </html>

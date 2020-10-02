@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -57,6 +60,14 @@
     <Compile Include="Migrations\202009291849147_firstMigrationWithPatientsTable.designer.cs">
       <DependentUpon>202009291849147_firstMigrationWithPatientsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202009302129562_ChangedColumnTypeToDate.cs" />
+    <Compile Include="Migrations\202009302129562_ChangedColumnTypeToDate.designer.cs">
+      <DependentUpon>202009302129562_ChangedColumnTypeToDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010012121026_AddressAddedForPatient.cs" />
+    <Compile Include="Migrations\202010012121026_AddressAddedForPatient.designer.cs">
+      <DependentUpon>202010012121026_AddressAddedForPatient.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AppDbContext.cs" />
@@ -66,6 +77,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202009291849147_firstMigrationWithPatientsTable.resx">
       <DependentUpon>202009291849147_firstMigrationWithPatientsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009302129562_ChangedColumnTypeToDate.resx">
+      <DependentUpon>202009302129562_ChangedColumnTypeToDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010012121026_AddressAddedForPatient.resx">
+      <DependentUpon>202010012121026_AddressAddedForPatient.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

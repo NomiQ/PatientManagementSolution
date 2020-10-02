@@ -1,0 +1,112 @@
+﻿@model PatientManagement.Web.ViewModels.PatientViewModel
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("searchPatient");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
+
+<div style="padding-top: 20px;">
+    <h4>Patient Management</h4>
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="form-group col-md-10">
+        <div class="row">
+            <div class="form-group col-md-2">
+                <button class="btn btn-secondary dropdown-toggle" onclick="myFunction()">
+                    Search patient
+                </button>
+            </div>
+            <div class="form-group col-md-3">
+
+                @Html.ActionLink("Add new patient", "AddPatient", "PatientManagement", new object { },
+                new { @class = "btn btn-secondary" })
+
+            </div>
+        </div>
+        @if (Model.AllPatients.Any())
+        {
+            <div class="col-md-8" id="searchPatient">
+                <div class="row border rounded border-top-0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Surname</th>
+                                <th>Date of Birth</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input class="form-control" /></td>
+                                <td><input type="date" class="form-control" /></td>
+                                <td><a class="btn btn-outline-primary">Search</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+         } 
+    </div>
+
+</div>
+
+@if (Model.AllPatients.Any())
+{
+    <div class="container">
+        <div class="row border rounded border-top-0">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Date of birth</th>
+                        <th scope="col">CNIC</th>
+                        <th class="text-center">Action</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var patient in Model.AllPatients)
+                    {
+                        <tr>
+                            <th scope="row">@($"{patient.FirstName} {patient.LastName}")</th>
+                            <td>@patient.DateOfBirth</td>
+                            <td>@patient.CNIC</td>
+                            <td>
+                                <div class="row justify-content-center">
+                                    <div class="col-sm-2">
+                                        @Html.ActionLink("Edit", "EditPatient", new { id = patient.Id },
+                                            new { @class = "btn btn-sm btn-outline-success" })
+                                    </div>
+                                    <div class="col-sm-2">
+                                        @Html.ActionLink("View", "Details", new object { },
+                                           new { @class = "btn btn-sm btn-outline-info" })
+                                    </div>
+                                    <div class="col-sm-2">
+                                        @Html.ActionLink("Delete", "Delete", new object { },
+                                           new { @class = "btn btn-sm btn-outline-danger" })
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else
+{
+    <div>
+        <p class="text-info">No patient record exist in the system!</p>
+    </div>
+}

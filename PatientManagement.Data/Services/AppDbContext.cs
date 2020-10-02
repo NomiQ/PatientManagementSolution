@@ -12,7 +12,7 @@ namespace PatientManagement.Data.Services
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             // fluent API configuration
-
+            modelBuilder.Entity<Patient>().Property(c => c.DateOfBirth).HasColumnType("date");
         }
     }
 }

@@ -26,5 +26,12 @@ namespace PatientManagement.Web.Controllers
 
             return View();
         }
+
+        public ActionResult Admin()
+        {
+            ViewBag.Message = "Admin page.";
+
+            return View();
+        }
     }
 }
