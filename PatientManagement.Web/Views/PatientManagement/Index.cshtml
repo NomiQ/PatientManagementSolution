@@ -48,7 +48,14 @@
                             <tr>
                                 <td><input class="form-control" /></td>
                                 <td><input type="date" class="form-control" /></td>
-                                <td><a class="btn btn-outline-primary">Search</a></td>
+                            </tr>
+                            <tr>
+                                <td style="border-top:none">
+                                </td>
+                                <td class="justify-content-end" style="border-top:none; text-align: end">
+                                    <a class="btn btn-primary" style="margin-right:10px;">Search</a>
+                                    <a class="btn btn-outline-primary">Clear</a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -78,12 +85,12 @@
                     {
                         <tr>
                             <th scope="row">@($"{patient.FirstName} {patient.LastName}")</th>
-                            <td>@patient.DateOfBirth</td>
+                            <td>@patient.DateOfBirth.ToString("dd-MM-yyyy")</td>
                             <td>@patient.CNIC</td>
                             <td>
                                 <div class="row justify-content-center">
                                     <div class="col-sm-2">
-                                        @Html.ActionLink("Edit", "EditPatient", new { id = patient.Id },
+                                        @Html.ActionLink("Edit", "EditPatient", "PatientManagement", new { id = patient.Id },
                                             new { @class = "btn btn-sm btn-outline-success" })
                                     </div>
                                     <div class="col-sm-2">
@@ -91,7 +98,7 @@
                                            new { @class = "btn btn-sm btn-outline-info" })
                                     </div>
                                     <div class="col-sm-2">
-                                        @Html.ActionLink("Delete", "Delete", new object { },
+                                        @Html.ActionLink("Delete", "DeletePatient", "PatientManagement", new { id = patient.Id },
                                            new { @class = "btn btn-sm btn-outline-danger" })
                                     </div>
                                 </div>

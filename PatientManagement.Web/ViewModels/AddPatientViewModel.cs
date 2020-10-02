@@ -16,6 +16,7 @@ namespace PatientManagement.Web.ViewModels
         public string MRN { get; set; }
 
         [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Please select gender")]
         public Gender Gender { get; set; }
 
         [Required]
@@ -40,6 +41,7 @@ namespace PatientManagement.Web.ViewModels
         [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
 
+        [Required]
         public string Address { get; set; }
     }
 }

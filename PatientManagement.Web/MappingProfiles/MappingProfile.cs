@@ -13,6 +13,7 @@ namespace PatientManagement.Web.MappingProfiles
         public MappingProfile()
         {
             CreateMap<AddPatientViewModel, Patient>();
+            CreateMap<EditPatientViewModel, Patient>();
         }
     }
 }

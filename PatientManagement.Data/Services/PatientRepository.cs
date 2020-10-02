@@ -32,7 +32,7 @@ namespace PatientManagement.Data.Services
             return patient;
         }
 
-        public bool CreatePatient(Patient patient)
+        public bool Create(Patient patient)
         {
             _appDbContext.Patients.Add(patient);
             var created = _appDbContext.SaveChanges();
@@ -40,14 +40,35 @@ namespace PatientManagement.Data.Services
             return created > 0;
         }
 
-        public bool UpdatePatient(Patient patient)
+        public bool Update(Patient patient)
         {
-            // set state to modify
-            _appDbContext.Entry(patient).State = EntityState.Modified;
-            
+            var editPatient = _appDbContext.Patients.FirstOrDefault(s => s.Id == patient.Id);
 
+            if (editPatient != null)
+            {
+                // set state to modify
+                _appDbContext.Entry(editPatient).State = EntityState.Modified;
+
+                editPatient.MRN = patient.MRN;
+                editPatient.FirstName = patient.FirstName;
+                editPatient.LastName = patient.LastName;
+                editPatient.Gender = patient.Gender;
+                editPatient.CNIC = patient.CNIC;
+                editPatient.DateOfBirth = patient.DateOfBirth;
+                editPatient.Address = patient.Address;
+            }
+    
             var updated = _appDbContext.SaveChanges();
             return updated > 0;
+        }
+
+        public bool Delete(Patient patient)
+        {
+            //remove patient
+            _appDbContext.Patients.Remove(patient);
+            var removed = _appDbContext.SaveChanges();
+
+            return removed > 0;
         }
     }
 }

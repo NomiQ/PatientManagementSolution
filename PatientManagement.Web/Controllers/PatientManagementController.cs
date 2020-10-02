@@ -38,13 +38,14 @@ namespace PatientManagement.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreatePatient(AddPatientViewModel patientRequest)
+        [ValidateAntiForgeryToken]
+        public ActionResult AddPatient(AddPatientViewModel patientRequest)
         {
 
-            if (patientRequest != null)
+            if (ModelState.IsValid)
             {
                 var patient = _mapper.Map<AddPatientViewModel, Patient>(patientRequest);
-                var created = _patientRepository.CreatePatient(patient);
+                var created = _patientRepository.Create(patient);
 
                 if (created)
                 {
@@ -52,11 +53,12 @@ namespace PatientManagement.Web.Controllers
                 }
             }
 
-            return new HttpStatusCodeResult(Response.StatusCode, "Bad Request");
+            return View(patientRequest);
         }
 
+        [HttpGet]
         public ActionResult EditPatient(int id)
-        {
+        { 
             // get patient details
             var patient = _patientRepository.GetPatient(id);
             
@@ -72,22 +74,41 @@ namespace PatientManagement.Web.Controllers
         }
 
 
-        [HttpPut]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult EditPatient(EditPatientViewModel editPatient)
         {
-            if (editPatient != null)
+            if (ModelState.IsValid)
             {
-                // check if patient exists
-                var exists = _patientRepository.Patients.Any(p => p.Id == editPatient.Id);
+                var patient = _mapper.Map<EditPatientViewModel, Patient>(editPatient);
+                var updated = _patientRepository.Update(patient);
 
-                if (exists)
+                if (updated)
                 {
-                    // update patient details
-
+                    return RedirectToAction("Index");
                 }
             }
 
-            return new HttpStatusCodeResult(Response.StatusCode, "400");
+            return View(editPatient);
+        }
+
+        [HttpGet]
+        public ActionResult DeletePatient(int id)
+        {
+            var patient = _patientRepository.GetPatient(id);
+            if (patient != null)
+            {
+                var deleted = _patientRepository.Delete(patient);
+                
+                if (deleted)
+                {
+                    return RedirectToAction("Index");
+                }
+
+                return new HttpStatusCodeResult(400);
+            }
+
+            return HttpNotFound();
         }
     }
 }

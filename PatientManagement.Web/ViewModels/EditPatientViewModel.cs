@@ -38,8 +38,10 @@ namespace PatientManagement.Web.ViewModels
         [Required]
         [Display(Name = "Date of birth")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DateOfBirth { get; set; }
 
+        [Required]
         public string Address { get; set; }
     }
 }

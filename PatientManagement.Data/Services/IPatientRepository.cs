@@ -10,6 +10,8 @@ namespace PatientManagement.Data.Services
     {
         IEnumerable<Patient> Patients { get; }
         Patient GetPatient(int id);
-        bool CreatePatient(Patient patient);
+        bool Create(Patient patient);
+        bool Update(Patient patient);
+        bool Delete(Patient patient);
     }
 }
